@@ -1,6 +1,7 @@
 name: Helm Lint, Package, Push
 
 on: 
+  workflow_call:
   push: 
     paths: 
     - 'chart/*'

@@ -1,5 +1,6 @@
 name: "Go Coverage"
 on:
+  workflow_call:
   pull_request:
   push:
     branches:
