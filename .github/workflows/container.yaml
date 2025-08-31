@@ -63,7 +63,14 @@ jobs:
             ${{ steps.meta.outputs.tags }}
       - name: Sign Push
         run: |
+          # old way (won't work in templating because the key must be on the org infrastructure available and we want to use the template on broader way
           #cosign sign --key env://COSIGN_KEY --tlog-upload=false ghcr.io/${{ github.repository }}@${{ steps.build-push.outputs.digest }}
+          # new way
           cosign sign -y ghcr.io/${{ github.repository }}@${{ steps.build-push.outputs.digest }}
+          # the sign information will be stored in the tlog store. look at the index id on job output
+          # rekor-cli get --log-index 454546991 --format json | jq -r '.Body.HashedRekordObj.signature.publicKey.content'| base64 -d| openssl x509 -noout -text
+          # this will be shown certificate output of the signed items
+          # verify process can be done within certificate information:
+          # cosign verify ghcr.io/eumel8/helloworld:wftest --certificate-identity "https://github.com/eumel8/workflow-templates/.github/workflows/container.yaml@refs/tags/0.0.5"   --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
         #env:
         #  COSIGN_KEY: ${{secrets.COSIGN_KEY}}
