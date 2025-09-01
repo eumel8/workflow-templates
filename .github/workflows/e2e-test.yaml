@@ -75,7 +75,7 @@ jobs:
 
     - name: Install App with Helm
       run: |
-        helm -n app upgrade -i app --atomic chart  || true
+        helm -n app upgrade -i app --atomic chart --create-namespace
 
     - name: Verify cluster state
       if: always()
@@ -86,8 +86,8 @@ jobs:
         echo "=== Nodes ==="
         kubectl get nodes -o wide
         
-        echo "=== DaemonSet Status ==="
-        kubectl get daemonset overlaytest -n kube-system || true
+        echo "=== App Status ==="
+        kubectl get all -n app || true
         
         echo "=== Pod Status ==="
         kubectl get pods -n app -o wide || true
