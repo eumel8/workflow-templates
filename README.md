@@ -24,6 +24,10 @@ This build a Helm package with the content of /chart directory on the repo. Exec
 
 This build a container image from the Go code without Docker. Due the parallel execution of the container workflow, this workflow is manually to execute, but on each push.
 
+### e2e-test.yaml
+
+This build creates a Kind Cluster with different Kubernetes Versions and installs a Helm Chart from the directory /chart. The Helm Chart must install sucessful, otherwise the task will fail.
+
 ## usage
 
 The workflows will be released but can be copied to the project repo on their needs. But there is no maintenance beside the dependbot activities. 
