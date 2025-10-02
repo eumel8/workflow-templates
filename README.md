@@ -8,6 +8,10 @@ This repo contains Github Action workflows to re-use on a central place for main
 
 This builds from Go code multi-platform binaries. So, it expects a main.go file in the repository root and will be executed on Releases
 
+### build-test.yaml
+
+This build from Go code a `testapp` to see if build works. Go format is also executed and upload an artifact for test purpose
+
 ### container.yaml
 
 This build a multi-platform container image with Docker, based on a Dockerfile which is also part of this repo. The container image will pushed on Github Container Registry and signed with Github OIDC within cosign. Tags are workflow execute and pushs on branch named dev.
