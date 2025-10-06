@@ -3,6 +3,15 @@ name: Release Binaries
 
 on:
   workflow_call:
+    inputs:
+      ldflags:
+        description: "Go linker flags"
+        required: false
+        type: string
+      buildflags:
+        description: "Go build flags"
+        required: false
+        type: string
   release:
     types: [created]
 
@@ -25,13 +34,13 @@ jobs:
         #goversion: "https://dl.google.com/go/go1.24.2.linux-amd64.tar.gz"
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
-        build_flags: ${{ build_flags }}
-        ldflags: ${{ ldflags }}
+        build_flags: $buildflags
+        ldflags: $ldflags
         retry: 10
         sha256sum: true
         md5sum: false
         overwrite: true
         pre_command: go mod tidy
       env:
-        ldflags: ${{ env.ldflags }}
-        build_flags: ${{ env.build_flags }}
+        ldflags: ${{ inputs.ldflags }}
+        buildflags: ${{ inputs.buildflags }}
