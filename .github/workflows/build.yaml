@@ -34,8 +34,8 @@ jobs:
         #goversion: "https://dl.google.com/go/go1.24.2.linux-amd64.tar.gz"
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
-        build_flags: $buildflags
-        ldflags: $ldflags
+        build_flags: ${{ env.buildflags }}
+        ldflags: ${{ env.ldflags }}
         retry: 10
         sha256sum: true
         md5sum: false
