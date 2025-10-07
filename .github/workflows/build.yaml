@@ -34,13 +34,13 @@ jobs:
         #goversion: "https://dl.google.com/go/go1.24.2.linux-amd64.tar.gz"
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
-        build_flags: ${{ inputs.buildflags }}
-        ldflags: ${{ inputs.ldflags }}
+        build_flags: $buildflags
+        ldflags: $ldflags
         retry: 10
         sha256sum: true
         md5sum: false
         overwrite: true
         pre_command: go mod tidy
-      #env:
-          #ldflags: ${{ inputs.ldflags }}
-          # buildflags: ${{ inputs.buildflags }}
+      env:
+        ldflags: ${{ inputs.ldflags }}
+        buildflags: ${{ inputs.buildflags }}
