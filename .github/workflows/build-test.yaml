@@ -38,6 +38,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v5
 
+      - name: Install X
+        run: apt-get update && apt-get install -y libgl1-mesa-dev xorg-dev
+
       - name: Build
         run: go build -o testapp
 
