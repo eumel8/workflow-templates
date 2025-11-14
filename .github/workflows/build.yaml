@@ -29,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install X
-      run: apt-get update && apt-get install -y libgl1-mesa-dev xorg-dev
+      run: sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev xorg-dev
     - uses: wangyoucao577/go-release-action@v1.53
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
