@@ -50,3 +50,16 @@ jobs:
   call-workflow:
     uses: eumel8/workflow-templates/.github/workflows/container.yaml@0.0.5
 ```
+
+```yaml
+name: Build (template)
+
+on:
+  push:
+    tags:
+    - "*"
+
+jobs:
+  call-workflow:
+    uses: eumel8/workflow-templates/.github/workflows/build.yaml@0.0.10
+```
